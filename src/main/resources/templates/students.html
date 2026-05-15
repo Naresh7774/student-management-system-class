@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<div class="dashboard-container">
+    <header class="header">
+        <h1><i class="fa-solid fa-graduation-cap"></i> Student Management System</h1>
+        <p>Manage your students elegantly and efficiently</p>
+    </header>
+
+    <div class="content">
+        <div class="action-bar">
+            <h2><i class="fa-solid fa-users"></i> Student List</h2>
+            <a th:href="@{/students/new}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Student</a>
+        </div>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Department</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.course}"></td>
+                    <td th:text="${student.department}"></td>
+                    <td th:text="${student.phoneNumber}"></td>
+                    <td class="action-buttons">
+                        <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-secondary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this student?')"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(students)}">
+                    <td colspan="6" class="text-center empty-state">
+                        <i class="fa-regular fa-folder-open empty-icon"></i>
+                        <p>No students found. Add a new student to get started!</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
