@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Add Student')}"></head>
+<body>
+
+<div class="layout-wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{fragments :: sidebar('students')}"></div>
+
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="~{fragments :: header}"></div>
+
+        <div class="page-content">
+    <header class="header form-header">
+        <h1><i class="fa-solid fa-user-plus"></i> Add New Student</h1>
+        <p>Enter the details to register a new student</p>
+    </header>
+
+    <div class="content form-content">
+        <div class="card">
+            <form th:action="@{/students}" th:object="${student}" method="post" class="form">
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <div class="input-with-icon">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="name" th:field="*{name}" placeholder="e.g. John Doe" />
+                    </div>
+                    <p class="error-msg" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="email" th:field="*{email}" placeholder="e.g. john@example.com" />
+                    </div>
+                    <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-book"></i>
+                        <input type="text" id="course" th:field="*{course}" placeholder="e.g. Computer Science" />
+                    </div>
+                    <p class="error-msg" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-building"></i>
+                        <input type="text" id="department" th:field="*{department}" placeholder="e.g. Engineering" />
+                    </div>
+                    <p class="error-msg" th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="e.g. +1 234 567 890" />
+                    </div>
+                    <p class="error-msg" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-check"></i> Save Student</button>
+                    <a th:href="@{/students}" class="btn btn-secondary btn-block text-center mt-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

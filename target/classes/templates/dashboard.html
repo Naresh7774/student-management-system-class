@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Dashboard')}"></head>
+<body>
+
+<div class="layout-wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{fragments :: sidebar('dashboard')}"></div>
+
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="~{fragments :: header}"></div>
+
+        <div class="page-content">
+            <h1 class="page-title">Dashboard Overview</h1>
+            <p class="text-muted">Welcome back to your administration panel.</p>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card stat-card primary-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Total Students</h3>
+                        <p class="stat-value" th:text="${totalStudents}">0</p>
+                    </div>
+                </div>
+                
+                <div class="card stat-card success-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Total Courses</h3>
+                        <p class="stat-value" th:text="${totalCourses}">0</p>
+                    </div>
+                </div>
+
+                <div class="card stat-card warning-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Departments</h3>
+                        <p class="stat-value" th:text="${totalDepartments}">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recently Added Table -->
+            <div class="mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Recently Added Students</h2>
+                        <a th:href="@{/students}" class="btn btn-sm btn-secondary">View All</a>
+                    </div>
+                    <div class="table-container no-shadow mt-0 border-top">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Course</th>
+                                    <th>Added</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="student : ${recentStudents}">
+                                    <td th:text="${student.name}" class="font-weight-500"></td>
+                                    <td th:text="${student.email}"></td>
+                                    <td><span class="badge" th:text="${student.course}"></span></td>
+                                    <td class="text-muted">Just now</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(recentStudents)}">
+                                    <td colspan="4" class="text-center text-muted">No students added yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

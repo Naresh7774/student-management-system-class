@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Student | Student Management System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+<head th:replace="~{fragments :: head('Add Student')}"></head>
 <body>
 
-<div class="dashboard-container">
+<div class="layout-wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{fragments :: sidebar('students')}"></div>
+
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="~{fragments :: header}"></div>
+
+        <div class="page-content">
     <header class="header form-header">
         <h1><i class="fa-solid fa-user-plus"></i> Add New Student</h1>
         <p>Enter the details to register a new student</p>
@@ -71,7 +73,10 @@
             </form>
         </div>
     </div>
+        </div>
+    </div>
 </div>
 
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

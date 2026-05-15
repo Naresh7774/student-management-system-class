@@ -2,8 +2,18 @@ package com.student.service;
 
 import com.student.entity.Student;
 import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface StudentService {
+    
+    // Method to get paginated students with optional search
+    Page<Student> findPaginated(int pageNo, int pageSize, String keyword);
+    
+    // Dashboard analytics
+    long getTotalStudents();
+    long getTotalCourses();
+    long getTotalDepartments();
+    List<Student> getRecentStudents();
     
     // Method to get all students
     List<Student> getAllStudents();
